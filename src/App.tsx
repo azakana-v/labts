@@ -7,6 +7,7 @@ import Placeholder from "./assets/placeholder.png";
 import { TextField, useTheme } from "@mui/material";
 import { theme } from "./main";
 import { useEffect, useState } from "react";
+import PhonePreview from "./components/PhonePreview";
 
 const Container = styled.div`
   display: flex;
@@ -28,6 +29,10 @@ const FormContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   min-width: 80%;
+  @media (max-height: 650px) {
+    grid-template-columns: 1fr 1fr 1fr; // Muda para uma coluna em telas pequenas
+    gap: 10px; // Reduz o espaçamento entre os itens
+  }
 `;
 const LeftContainer = styled.div`
   display: flex;
@@ -42,7 +47,9 @@ const Wrapper = styled.div`
   min-height: 100%;
 `;
 
-const KtechLogo = styled.img``;
+const KtechLogo = styled.img`
+  width: 15%;
+`;
 
 const VarLabelContainer = styled.div`
   display: flex;
@@ -84,15 +91,23 @@ const PlusButtonContainer = styled.div`
     scale: 1.1;
   }
   margin-top: 35px;
+
+  @media (max-height: 650px) {
+    min-height: 35px;
+    min-width: 35px;
+    max-height: 35px;
+    max-width: 35px;
+  }
 `;
 
 const PlusText = styled.span`
   color: white;
   font-size: 55px;
   font-weight: 800;
+  @media (max-height: 650px) {
+    font-size: 35px;
+  }
 `;
-
-let varsArrays = [{ id: 0, content: "" }];
 
 function App() {
   const [varCount, setVarCount] = useState(0);
@@ -120,12 +135,19 @@ function App() {
               <TextField
                 color={themePallete.main}
                 id="outlined-basic"
+                size="small"
                 label="Namespace"
                 variant="outlined"
               />
-              <TextField id="outlined-basic" label="Id" variant="outlined" />
               <TextField
                 id="outlined-basic"
+                size="small"
+                label="Id"
+                variant="outlined"
+              />
+              <TextField
+                id="outlined-basic"
+                size="small"
                 label="Elementname"
                 variant="outlined"
               />
@@ -133,16 +155,19 @@ function App() {
                 select
                 defaultValue="EUR"
                 id="outlined-basic"
+                size="small"
                 label="Org"
                 variant="outlined"
               />
               <TextField
                 id="outlined-basic"
+                size="small"
                 label="Prévia"
                 variant="outlined"
               />
               <TextField
                 id="outlined-basic"
+                size="small"
                 label="Apelido (Opcional)"
                 variant="outlined"
               />
@@ -158,6 +183,7 @@ function App() {
                   <TextField
                     className="input-animation"
                     id="outlined-basic"
+                    size="small"
                     label={`Variavel ${varsArrays[index].id + 1}`}
                     variant="outlined"
                   />
@@ -170,7 +196,7 @@ function App() {
           </LeftContainer>
 
           <RightContainer>
-            <PhoneContainer src={Placeholder}></PhoneContainer>
+            <PhonePreview></PhonePreview>
           </RightContainer>
         </MainContentContainer>
       </Container>
