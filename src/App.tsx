@@ -19,7 +19,7 @@ const MainContentContainer = styled.div`
   display: grid;
   grid-template-columns: 70% 30%;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   min-height: 100%;
   min-width: 100%;
 `;
@@ -31,9 +31,11 @@ const FormContainer = styled.div`
 `;
 const LeftContainer = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
+  transition: 10s ease-in-out;
+  gap: 10px;
 `;
 
 const Wrapper = styled.div`
@@ -154,6 +156,7 @@ function App() {
               {varsArrays.map((input, index) => {
                 return (
                   <TextField
+                    className="input-animation"
                     id="outlined-basic"
                     label={`Variavel ${varsArrays[index].id + 1}`}
                     variant="outlined"
